@@ -6,24 +6,34 @@ Dichiariamo chi ha vinto. */
 
 
 var sceltaUtente = prompt('Scegli tra pari o dispari.');
-sceltaUtente = sceltaUtente.toLowerCase();
-var numeroUtente = parseInt(prompt('Scegli un numero da 1 a 5.'))
+sceltaUtente = sceltaUtente.toLowerCase().trim();
 
 while (sceltaUtente != 'pari' && sceltaUtente != 'dispari'){
-    scelta = prompt('Hai sbagliato, puoi scegliere tra "pari" o "dispari".')
+    sceltaUtente = prompt('Hai sbagliato, puoi scegliere tra "pari" o "dispari".')
+    sceltaUtente = sceltaUtente.toLowerCase().trim();
 }
-console.log(sceltaUtente);
+
+document.getElementById('segno').innerHTML = sceltaUtente.toUpperCase();
+
+var numeroUtente = parseInt(prompt('Scegli un numero da 1 a 5.'))
 
 while (numeroUtente <= 0 || numeroUtente >= 6){
     numeroUtente = parseInt(prompt('Hai sbagliato numero, puoi scegliere un numero da "1" a "5".'))
 }
-console.log(numeroUtente);
+document.getElementById('numero-utente').innerHTML = 'Ed il numero: ' + numeroUtente;
 
 var numeroCpu = randomNumber(1,5);
-var sommaNumeri = somma(numeroUtente,numeroCpu)
-console.log(numeroCpu);
-console.log(sommaNumeri);
+var sommaNumeri = somma(numeroUtente,numeroCpu);
+var tipologiaSomma = isPari(sommaNumeri);
 
+document.getElementById('numero-cpu').innerHTML = 'Il computer ha lanciato: ' + numeroCpu;
+document.getElementById('somma').innerHTML = 'La somma è: ' + sommaNumeri;
+
+if (tipologiaSomma == sceltaUtente){
+    document.getElementById('vincitore').innerHTML = 'Hai Vinto!';
+} else {
+    document.getElementById('vincitore').innerHTML = 'Hai Perso!';
+}
 
 // Funzioni
 function randomNumber(min,max) {
@@ -32,4 +42,11 @@ function randomNumber(min,max) {
 
 function somma(n1,n2) {
     return n1 + n2;
+}
+
+function isPari(tot) {
+    if (tot%2 == 0) {
+        return 'pari';
+    }
+    return 'dispari';
 }
