@@ -4,22 +4,19 @@ Sommiamo i due numeri
 Stabiliamo se la somma dei due numeri è pari o dispari (usando una funzione)
 Dichiariamo chi ha vinto. */
 
-
-var sceltaUtente = prompt('Scegli tra pari o dispari.');
-sceltaUtente = sceltaUtente.toLowerCase().trim();
-
-while (sceltaUtente != 'pari' && sceltaUtente != 'dispari'){
-    sceltaUtente = prompt('Hai sbagliato, puoi scegliere tra "pari" o "dispari".')
+var sceltaUtente;
+do {
+    sceltaUtente = prompt('Scegli tra "pari" o "dispari".')
     sceltaUtente = sceltaUtente.toLowerCase().trim();
-}
+} while (sceltaUtente != 'pari' && sceltaUtente != 'dispari')
 
 document.getElementById('segno').innerHTML = sceltaUtente.toUpperCase();
 
-var numeroUtente = parseInt(prompt('Scegli un numero da 1 a 5.'))
+var numeroUtente;
+do {
+    numeroUtente = parseInt(prompt('Scegli un numero da "1" a "5".'));
+} while (numeroUtente <= 0 || numeroUtente >= 6)
 
-while (numeroUtente <= 0 || numeroUtente >= 6){
-    numeroUtente = parseInt(prompt('Hai sbagliato numero, puoi scegliere un numero da "1" a "5".'))
-}
 document.getElementById('numero-utente').innerHTML = 'Ed il numero: ' + numeroUtente;
 
 var numeroCpu = randomNumber(1,5);
